@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  staytus:
+    depends_on:
+    - staytus-mariadb
+    image: quay.io/galexrt/staytus
+    ports:
+      - '8787:8787'
+    links:
+      - staytus-mariadb
+    environment:
+       DB_HOST: staytus-mariadb
+       DB_USER: staytus
+       DB_PASSWORD: staytus
+
+  staytus-mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: staytus
+      MYSQL_USER: staytus
+      MYSQL_PASSWORD: staytus
