@@ -4,6 +4,7 @@ services:
     depends_on:
     - staytus-mariadb
     image: quay.io/galexrt/staytus
+    restart: always
     ports:
       - '8787:8787'
     links:
